@@ -12,3 +12,7 @@ How to:
   ```
   ./run_lab.sh <project_name>
   ```
+4. To destroy lab run script
+  ```
+  ./destroy_lab.sh
+  ```
