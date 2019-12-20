@@ -5,14 +5,13 @@ gcloud projects create $PROJECT_NAME --enable-cloud-apis --set-as-default
 # Set default compute zone and region
 gcloud config set compute/region us-west1
 gcloud config set compute/zone us-west1-a
-# get 1st billing account id
+# get 1ist billing account id
 BILLING_ACCOUNT_ID=`gcloud beta billing accounts list --format='value(name.basename(account_id))' | head -n 1`
 # set billing account id for project
 gcloud beta billing projects link $PROJECT_NAME --billing-account=$BILLING_ACCOUNT_ID
 # make bucket for logs
 gsutil mb gs://$PROJECT_NAME
-
-COMPUTE_SERVICE_ACCOUNT=`gcloud iam service-accounts list --format='value(name.basename(email))' | head -n 1`
+#COMPUTE_SERVICE_ACCOUNT=`gcloud iam service-accounts list --format='value(name.basename(email))' | head -n 1`
 # Enable gcloud compute apis
 gcloud services enable compute.googleapis.com
 # Create lab instance
