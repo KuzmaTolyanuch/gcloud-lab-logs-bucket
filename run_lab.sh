@@ -13,8 +13,9 @@ gcloud beta billing projects link $PROJECT_NAME --billing-account=$BILLING_ACCOU
 gsutil mb gs://$PROJECT_NAME
 # Enable gcloud compute apis
 gcloud services enable compute.googleapis.com
-# Set default compute region and zone
+# Create lab instance
 gcloud compute instances create \
         --machine-type "f1-micro" \
         --metadata "lab-logs-bucket=gs://$PROJECT_NAME/" \
-        --metadata-from-file "startup-script=startup_scripts/worker-startup-script.sh"
+        --metadata-from-file "startup-script=startup_scripts/worker-startup-script.sh" \
+        $PROJECT_NAME
