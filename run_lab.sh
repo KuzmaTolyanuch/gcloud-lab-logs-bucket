@@ -11,11 +11,14 @@ BILLING_ACCOUNT_ID=`gcloud beta billing accounts list --format='value(name.basen
 gcloud beta billing projects link $PROJECT_NAME --billing-account=$BILLING_ACCOUNT_ID
 # make bucket for logs
 gsutil mb gs://$PROJECT_NAME
+
+COMPUTE_SERVICE_ACCOUNT=`gcloud iam service-accounts list --format='value(name.basename(email))' | head -n 1`
 # Enable gcloud compute apis
 gcloud services enable compute.googleapis.com
 # Create lab instance
 gcloud compute instances create \
         --machine-type "f1-micro" \
+        --scopes=storage-rw \
         --metadata "lab-logs-bucket=gs://$PROJECT_NAME/" \
         --metadata-from-file "startup-script=startup_scripts/worker-startup-script.sh" \
         $PROJECT_NAME
