@@ -6,7 +6,7 @@ How to:
   ```
 2. Give exec permissions to tun_lab.sh -
   ```
-  chmod +x run_lab.sh
+  chmod +x *.sh
   ```
 3. Run script, pass new project name as argument
   ```
